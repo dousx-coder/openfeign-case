@@ -1,0 +1,16 @@
+plugins {
+    id 'java-library'
+}
+
+configurations.all {
+    transitive = true
+}
+
+jar.enabled = true
+
+dependencies {
+    api 'io.github.openfeign:feign-core'
+    api 'io.github.openfeign:feign-jackson'
+    api 'io.github.openfeign:feign-ribbon'
+}
+

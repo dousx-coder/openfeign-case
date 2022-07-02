@@ -1,0 +1,8 @@
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'cn.cruder:log-util-spring-boot-starter'
+    // 引入项目下的模块
+    compileOnly project(":common")
+}

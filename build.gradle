@@ -1,0 +1,82 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.1'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+repositories {
+    mavenLocal()
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    mavenCentral()
+}
+
+ext {
+    //自定义版本变量
+    set('springBootVersion', "2.7.1")
+    set('commonToolsVersion', "1.0-SNAPSHOT")
+    set('logUtilVersion', "1.0.2-SNAPSHOT")
+    set('openfeignVersion', "11.8")
+    set('ribbonVersion', "2.7.18")
+}
+
+// 针对所有project的配置，包含根项目
+allprojects {
+    //创建项目时的你
+    //项目是java项目
+    apply plugin: 'java'
+    //项目是idea项目
+    apply plugin: 'idea'
+    group 'cn.cruder.dousx'
+    version '1.0-SNAPSHOT'
+    sourceCompatibility = 17
+    /* java编译的时候缺省状态下会因为中文字符而失败 */
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+}
+
+subprojects {
+    apply plugin: 'java'
+    //项目是idea项目
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    repositories {
+        mavenLocal()
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        mavenCentral()
+    }
+    // 版本管理
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+        }
+        // 指定版本
+        dependencies {
+            // 自定义工具类
+            dependency "cn.cruder:common-tools:${commonToolsVersion}"
+            // 自定义log starter
+            dependency "cn.cruder:log-util-spring-boot-starter:${logUtilVersion}"
+            dependency "io.github.openfeign:feign-core:${openfeignVersion}"
+            dependency "io.github.openfeign:feign-jackson:${openfeignVersion}"
+            dependency "io.github.openfeign:feign-ribbon:${openfeignVersion}"
+        }
+    }
+
+    // 添加通用依赖
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.projectlombok:lombok'
+        implementation "cn.cruder:common-tools"
+    }
+    group 'cn.cruder.dousx'
+    version '1.0-SNAPSHOT'
+    jar.enabled = true
+    sourceCompatibility = '17'
+}
