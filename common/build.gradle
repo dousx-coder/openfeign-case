@@ -6,6 +6,7 @@ configurations.all {
     transitive = true
 }
 
+bootJar.enabled = false
 jar.enabled = true
 
 dependencies {

@@ -3,7 +3,13 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
-
+bootJar {
+    // https://stackoverflow.com/questions/56861256/gradle-build-failed-main-class-name-has-not-been-configured-and-it-could-not-be
+    enabled = false
+}
+jar {
+    enabled = true
+}
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
