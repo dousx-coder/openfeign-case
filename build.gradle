@@ -33,25 +33,25 @@ ext {
 
 // 针对所有project的配置，包含根项目
 allprojects {
-    //创建项目时的你
     //项目是java项目
     apply plugin: 'java'
     //项目是idea项目
     apply plugin: 'idea'
+    // 根项目中指定version
     group 'cn.cruder.dousx'
-    version '1.0-SNAPSHOT'
+    // 根项目中指定version
+    version '1.1-SNAPSHOT'
+    // 指定java版本
     sourceCompatibility = 17
+    jar.enabled = true
     /* java编译的时候缺省状态下会因为中文字符而失败 */
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 }
-
+// 针对所有子project的配置
 subprojects {
-    apply plugin: 'java'
-    //项目是idea项目
-    apply plugin: 'idea'
+    // 所有项目都加了springboot相关插件,如果子项目是工具类,则配置 bootJar.enabled = false
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
-
     repositories {
         mavenLocal()
         maven { url 'https://maven.aliyun.com/repository/public' }
@@ -82,8 +82,4 @@ subprojects {
         testImplementation 'org.projectlombok:lombok'
         implementation "cn.cruder:common-tools"
     }
-    group 'cn.cruder.dousx'
-    version '1.0-SNAPSHOT'
-    jar.enabled = true
-    sourceCompatibility = '17'
 }

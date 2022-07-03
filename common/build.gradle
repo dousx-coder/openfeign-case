@@ -7,7 +7,7 @@ configurations.all {
 }
 
 bootJar.enabled = false
-jar.enabled = true
+
 
 dependencies {
     api 'io.github.openfeign:feign-core'
