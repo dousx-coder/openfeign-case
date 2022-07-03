@@ -2,8 +2,5 @@ rootProject.name = 'openfeign-case'
 include 'goods'
 include 'order'
 include 'common'
-
-//includeFlat 'common'
-//project(':common').projectDir = new File(settingsDir, '../common')
 include 'consumer'
 
