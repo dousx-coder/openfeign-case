@@ -4,9 +4,8 @@ import cn.cruder.dousx.consumer.properties.RibbonProperties;
 import cn.cruder.dousx.consumer.properties.ServicesUrlProperties;
 import cn.cruder.dousx.feign.api.GoodsFeignApi;
 import cn.cruder.dousx.feign.api.OrderFeignApi;
-import cn.cruder.dousx.feign.json.GsonDecoder;
-import cn.cruder.dousx.feign.json.GsonEncoder;
-import cn.cruder.tools.json.JsonUtilPool;
+import cn.cruder.dousx.feign.json.JsonDecoder;
+import cn.cruder.dousx.feign.json.JsonEncoder;
 import com.netflix.client.ClientFactory;
 import com.netflix.client.config.ClientConfigFactory;
 import com.netflix.client.config.IClientConfig;
@@ -55,8 +54,8 @@ public class FeginConfig {
                 .logger(new Logger.JavaLogger(this.getClass().getName()))
                 .client(ribbonClient)
                 .logLevel(Logger.Level.FULL)
-                .encoder(new GsonEncoder(JsonUtilPool.getGsonInstance()))
-                .decoder(new GsonDecoder(JsonUtilPool.getGsonInstance()))
+                .encoder(new JsonEncoder())
+                .decoder(new JsonDecoder())
                 .build();
     }
 

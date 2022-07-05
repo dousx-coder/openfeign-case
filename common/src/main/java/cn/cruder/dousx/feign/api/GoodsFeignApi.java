@@ -5,7 +5,7 @@ import cn.cruder.dousx.dto.goods.param.SearchGoodsParam;
 import cn.cruder.dousx.dto.goods.result.SearchGoodsResult;
 import cn.cruder.dousx.feign.constants.FeignConstants;
 import cn.cruder.dousx.feign.json.AuthorizationExpander;
-import cn.cruder.dousx.feign.json.GsonExpander;
+import cn.cruder.dousx.feign.json.JsonExpander;
 import cn.cruder.tools.rest.CommonRestResult;
 import feign.Body;
 import feign.Headers;
@@ -30,5 +30,5 @@ public interface GoodsFeignApi {
     @Headers({"Authorization: {token}", FeignConstants.HTTP_APPLICATION_JSON})
     @Body("{body}")
     CommonRestResult<SearchGoodsResult> searchGoods(@Param(value = "token", expander = AuthorizationExpander.class) Authorization authorization,
-                                                    @Param(value = "body", expander = GsonExpander.class) SearchGoodsParam body);
+                                                    @Param(value = "body", expander = JsonExpander.class) SearchGoodsParam body);
 }

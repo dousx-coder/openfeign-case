@@ -5,7 +5,7 @@ import cn.cruder.dousx.dto.order.param.SearchOrderParam;
 import cn.cruder.dousx.dto.order.result.SearchOrderResult;
 import cn.cruder.dousx.feign.constants.FeignConstants;
 import cn.cruder.dousx.feign.json.AuthorizationExpander;
-import cn.cruder.dousx.feign.json.GsonExpander;
+import cn.cruder.dousx.feign.json.JsonExpander;
 import cn.cruder.tools.rest.CommonRestResult;
 import feign.Body;
 import feign.Headers;
@@ -30,5 +30,5 @@ public interface OrderFeignApi {
     @Headers({"Authorization: {token}", FeignConstants.HTTP_APPLICATION_JSON})
     @Body("{body}")
     CommonRestResult<SearchOrderResult> searchOrder(@Param(value = "token", expander = AuthorizationExpander.class) String authorization,
-                                                    @Param(value = "body", expander = GsonExpander.class) SearchOrderParam body);
+                                                    @Param(value = "body", expander = JsonExpander.class) SearchOrderParam body);
 }
