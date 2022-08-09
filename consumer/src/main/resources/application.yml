@@ -1,28 +1,3 @@
-server:
-  port: 7300
-logging:
-  pattern:
-    console: '%red(%d{yyyy-MM-dd HH:mm:ss.SSS}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger{10}.%M [%line]) - %cyan(%msg%n)'
-  charset:
-    console: UTF-8
-  level:
-    root: info
-    cn:
-      cruder: debug
-    feign: debug
-# 自定义feign配置
-services:
-  url:
-    order-server: http://order
-    goods-server: http://goods
-# 自定义ribbon配置(可以单独移出去)
-ribbon-map-config:
-  ribbon-infos:
-    #第1个值 producer为key
-    order:
-      - localhost:7200
-      - localhost:7201
-    #第1个值 producer为key
-    goods:
-      - localhost:7100
-      - localhost:7100
+spring:
+  profiles:
+    active: dev

@@ -3,6 +3,7 @@ package cn.cruder.dousx.order.controller;
 import cn.cruder.dousx.dto.order.param.SearchOrderParam;
 import cn.cruder.dousx.dto.order.result.SearchOrderResult;
 import cn.cruder.logutil.annotation.AopLogger;
+import cn.cruder.logutil.enums.LevelEnum;
 import cn.cruder.tools.rest.CommonRestResult;
 import cn.hutool.core.date.DateUtil;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,7 +26,7 @@ public class OrderSearchController {
 
 
     @PostMapping("/searchOrder")
-    @AopLogger(describe = "查询订单")
+    @AopLogger(describe = "查询订单", isFormat = true, appointLog = "controllerLog", level = LevelEnum.INFO)
     public CommonRestResult<SearchOrderResult> searchOrder(@RequestBody SearchOrderParam param) {
         Random random = new Random();
         SearchOrderResult result = SearchOrderResult.builder()

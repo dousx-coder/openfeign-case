@@ -3,6 +3,7 @@ package cn.cruder.dousx.goods.controller;
 import cn.cruder.dousx.dto.goods.param.SearchGoodsParam;
 import cn.cruder.dousx.dto.goods.result.SearchGoodsResult;
 import cn.cruder.logutil.annotation.AopLogger;
+import cn.cruder.logutil.enums.LevelEnum;
 import cn.cruder.tools.rest.CommonRestResult;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +24,7 @@ public class GoodsSearchController {
     private Integer serverPort;
 
     @PostMapping("/searchGoods")
-    @AopLogger(describe = "查询商品")
+    @AopLogger(describe = "查询商品", isFormat = true, appointLog = "controllerLog", level = LevelEnum.INFO)
     public CommonRestResult<SearchGoodsResult> searchGoods(@RequestBody SearchGoodsParam param) {
         Random random = new Random();
         SearchGoodsResult searchGoodsResult = SearchGoodsResult.builder().goodsId(param.getGoodsId())
