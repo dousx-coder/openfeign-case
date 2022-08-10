@@ -24,7 +24,7 @@ public class GoodsSearchController {
     private Integer serverPort;
 
     @PostMapping("/searchGoods")
-    @AopLogger(describe = "查询商品", isFormat = true, appointLog = "controllerLog", level = LevelEnum.INFO)
+    @AopLogger(describe = "查询商品", isFormat = true, level = LevelEnum.INFO)
     public CommonRestResult<SearchGoodsResult> searchGoods(@RequestBody SearchGoodsParam param) {
         Random random = new Random();
         SearchGoodsResult searchGoodsResult = SearchGoodsResult.builder().goodsId(param.getGoodsId())

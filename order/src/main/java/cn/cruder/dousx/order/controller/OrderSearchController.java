@@ -26,7 +26,7 @@ public class OrderSearchController {
 
 
     @PostMapping("/searchOrder")
-    @AopLogger(describe = "查询订单", isFormat = true, appointLog = "controllerLog", level = LevelEnum.INFO)
+    @AopLogger(describe = "查询订单", isFormat = true, level = LevelEnum.INFO)
     public CommonRestResult<SearchOrderResult> searchOrder(@RequestBody SearchOrderParam param) {
         Random random = new Random();
         SearchOrderResult result = SearchOrderResult.builder()
