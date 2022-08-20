@@ -26,7 +26,7 @@ ext {
     //自定义版本变量
     set('springBootVersion', "2.7.1")
     set('commonToolsVersion', "1.1.2022080821")
-    set('logUtilVersion', "1.1.2022080822")
+    set('logUtilVersion', "1.1.2022082012")
     set('openfeignVersion', "11.8")
     set('ribbonVersion', "2.7.18")
 }
