@@ -23,10 +23,11 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 /**
  * @author dousx
@@ -59,8 +60,23 @@ public class FeginConfig {
                 .encoder(new JsonEncoder())
                 .decoder(new JsonDecoder())
                 .requestInterceptor(template -> {
-                    // 透传TRACE_ID
-                    template.header(LogConstant.TRACE_ID, MDC.get(LogConstant.TRACE_ID));
+                    // 透传
+                    ServletRequestAttributes attributes = (ServletRequestAttributes)
+                            RequestContextHolder.getRequestAttributes();
+                    HttpServletRequest request = attributes.getRequest();
+                    Enumeration<String> headerNames = request.getHeaderNames();
+                    if (headerNames != null) {
+                        while (headerNames.hasMoreElements()) {
+                            String name = headerNames.nextElement();
+                            String values = request.getHeader(name);
+                            template.header(name, values);
+                        }
+                    }
+                    Map<String, Collection<String>> headers = template.headers();
+                    if (CollectionUtils.isEmpty(headers) || !headers.containsKey(LogConstant.TRACE_ID)) {
+                        // 透传TRACE_ID
+                        template.header(LogConstant.TRACE_ID, MDC.get(LogConstant.TRACE_ID));
+                    }
                 })
                 .build();
     }
