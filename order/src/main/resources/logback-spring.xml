@@ -25,7 +25,7 @@
             logging.charset.console=UTF-8
              -->
             <pattern>
-                %yellow(%d{yyyy-MM-dd HH:mm:ss.SSS}) %highlight(%-5level) %green([%thread]) %boldMagenta(%logger{20}.%M [%line]) - %cyan(%msg%n)
+                %yellow(%d{yyyy-MM-dd HH:mm:ss.SSS}) %highlight(%-5level) %green([%thread]) %boldMagenta(%logger{20}.%M [%line]) - %cyan(%X{TRACE_ID} %msg%n)
             </pattern>
             <charset>UTF-8</charset> <!-- 此处设置字符集，防止中文乱码 -->
         </encoder>
@@ -56,7 +56,7 @@
         <encoder>
             <charset>UTF-8</charset> <!-- 此处设置字符集，防止中文乱码 -->
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{20}.%M [%line] - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{20}.%M [%line] - %X{TRACE_ID} %msg%n</pattern>
         </encoder>
 
     </appender>
@@ -92,7 +92,7 @@
         <encoder charset="UTF-8">
             <charset>UTF-8</charset> <!-- 此处设置字符集，防止中文乱码 -->
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{20}.%M [%line] - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{20}.%M [%line] - %X{TRACE_ID} %msg%n</pattern>
         </encoder>
     </appender>
 

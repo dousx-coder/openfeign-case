@@ -6,6 +6,7 @@ import cn.cruder.dousx.feign.api.GoodsFeignApi;
 import cn.cruder.dousx.feign.api.OrderFeignApi;
 import cn.cruder.dousx.feign.json.JsonDecoder;
 import cn.cruder.dousx.feign.json.JsonEncoder;
+import cn.cruder.logutil.constant.LogConstant;
 import com.netflix.client.ClientFactory;
 import com.netflix.client.config.ClientConfigFactory;
 import com.netflix.client.config.IClientConfig;
@@ -16,6 +17,7 @@ import feign.Logger;
 import feign.Target;
 import feign.ribbon.LBClient;
 import feign.ribbon.RibbonClient;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
@@ -56,6 +58,10 @@ public class FeginConfig {
                 .logLevel(Logger.Level.FULL)
                 .encoder(new JsonEncoder())
                 .decoder(new JsonDecoder())
+                .requestInterceptor(template -> {
+                    // 透传TRACE_ID
+                    template.header(LogConstant.TRACE_ID, MDC.get(LogConstant.TRACE_ID));
+                })
                 .build();
     }
 

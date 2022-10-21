@@ -5,6 +5,7 @@ import cn.cruder.dousx.dto.goods.result.SearchGoodsResult;
 import cn.cruder.logutil.annotation.AopLogger;
 import cn.cruder.logutil.enums.LevelEnum;
 import cn.cruder.tools.rest.CommonRestResult;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import java.util.Random;
  * @date 2022-07-02 16:49
  */
 @RestController
+@Slf4j
 public class GoodsSearchController {
 
     @Value("${server.port:8080}")
@@ -27,6 +29,7 @@ public class GoodsSearchController {
     @AopLogger(describe = "查询商品", isFormat = true, level = LevelEnum.INFO)
     public CommonRestResult<SearchGoodsResult> searchGoods(@RequestBody SearchGoodsParam param) {
         Random random = new Random();
+        log.debug("searchGoods run...");
         SearchGoodsResult searchGoodsResult = SearchGoodsResult.builder().goodsId(param.getGoodsId())
                 .goodsName("雪糕")
                 .unit("个/袋")

@@ -6,6 +6,7 @@ import cn.cruder.logutil.annotation.AopLogger;
 import cn.cruder.logutil.enums.LevelEnum;
 import cn.cruder.tools.rest.CommonRestResult;
 import cn.hutool.core.date.DateUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +20,7 @@ import java.util.Random;
  * @date 2022-07-02 16:55
  */
 @RestController
+@Slf4j
 public class OrderSearchController {
 
     @Value("${server.port:8080}")
@@ -29,6 +31,7 @@ public class OrderSearchController {
     @AopLogger(describe = "查询订单", isFormat = true, level = LevelEnum.INFO)
     public CommonRestResult<SearchOrderResult> searchOrder(@RequestBody SearchOrderParam param) {
         Random random = new Random();
+        log.debug("searchOrder run...");
         SearchOrderResult result = SearchOrderResult.builder()
                 .orderId(param.getOrderId())
                 .orderTime(DateUtil.yesterday())
