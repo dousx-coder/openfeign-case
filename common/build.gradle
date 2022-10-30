@@ -13,5 +13,10 @@ dependencies {
     api 'io.github.openfeign:feign-core'
     api 'io.github.openfeign:feign-jackson'
     api 'io.github.openfeign:feign-ribbon'
+
+//    // https://mvnrepository.com/artifact/io.github.openfeign/feign-okhttp
+//    api 'io.github.openfeign:feign-okhttp:11.10'
+//    // https://mvnrepository.com/artifact/io.github.openfeign/feign-httpclient
+//    api 'io.github.openfeign:feign-httpclient:11.10'
 }
 
