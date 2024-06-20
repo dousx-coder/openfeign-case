@@ -18,7 +18,7 @@ public class JsonExpander implements Param.Expander {
                 return JSON.toJSONString(value);
             } catch (Exception ex) {
                 try {
-                    return JsonUtilPool.getObjectMapperInstancePool().writeValueAsString(value);
+                    return JsonUtilPool.getObjectMapperInstance().writeValueAsString(value);
                 } catch (Exception exc) {
                     throw new RuntimeException(exc);
                 }

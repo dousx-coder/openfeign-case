@@ -24,7 +24,7 @@ public class JsonEncoder extends Encoder.Default {
                 template.body(JSON.toJSONString(object));
             } catch (Exception ex) {
                 try {
-                    template.body(JsonUtilPool.getObjectMapperInstancePool().writeValueAsString(object));
+                    template.body(JsonUtilPool.getObjectMapperInstance().writeValueAsString(object));
                 } catch (JsonProcessingException exc) {
                     super.encode(object, bodyType, template);
                 }
