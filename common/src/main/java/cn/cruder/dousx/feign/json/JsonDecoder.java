@@ -39,7 +39,7 @@ public class JsonDecoder extends Decoder.Default {
                     log.debug("尝试ObjectMapper解析. ...");
                 }
 
-                Object result = JsonUtilPool.getObjectMapperInstancePool().readValue(responseStr, (JavaType) type);
+                Object result = JsonUtilPool.getObjectMapperInstance().readValue(responseStr, (JavaType) type);
                 if (log.isDebugEnabled()) {
                     log.debug("ObjectMapper解析成功...");
                 }
